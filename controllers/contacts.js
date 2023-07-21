@@ -55,6 +55,7 @@ const deleteContact = async (req, res) => {
   res.status(200).json({ message: "contact deleted" });
 };
 
+
 //decotations of all methods
 const ctrl = {
   getAll: ctrlWrapper(getAll),
