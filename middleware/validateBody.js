@@ -19,6 +19,8 @@ const validateBody = schema => {
           throw HttpError(400, "missed required phone field");
         case '"favorite" is required':
           throw HttpError(400, "missing field favorite");
+        case '"password" is required':
+          throw HttpError(400, "missing field password");
         default:
           next(HttpError(400, error.message));
           break;
