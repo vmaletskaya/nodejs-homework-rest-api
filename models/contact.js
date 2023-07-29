@@ -10,7 +10,7 @@ const ContactSchema = new Schema(
     favorite: { type: Boolean, default: false },
     owner: { type: Schema.Types.ObjectId, ref: "user", required: true },
   },
-  { versionKey: false },
+  { versionKey: false }
 );
 
 ContactSchema.post("save", handleMongooseError);

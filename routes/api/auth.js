@@ -19,8 +19,11 @@ router.get("/current", authenticate, ctrl.getCurrent);
 router.post("/logout", authenticate, ctrl.logout);
 
 //change subscription
-router.patch("/", authenticate, validateBody(subscriptionSchema), ctrl.changeSubscription);
-
-
+router.patch(
+  "/",
+  authenticate,
+  validateBody(subscriptionSchema),
+  ctrl.changeSubscription
+);
 
 export default router;

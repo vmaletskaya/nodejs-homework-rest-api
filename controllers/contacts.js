@@ -6,7 +6,6 @@ import { Contact } from "../models/contact.js";
 const getAll = async (req, res) => {
   const { _id: owner } = req.user;
   if (req.query.hasOwnProperty("favorite")) {
-    
     const { favorite } = req.query;
     const result = await Contact.find({ owner }, "-owner").where({ favorite });
     res.status(200).json(result);
@@ -42,7 +41,9 @@ const AddContact = async (req, res) => {
 const modifyContact = async (req, res) => {
   const { contactId } = req.params;
 
-  const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, { new: true });
+  const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, {
+    new: true,
+  });
   if (!updatedContact) throw HttpError(404, "Not found");
 
   res.status(200).json(updatedContact);
@@ -52,7 +53,9 @@ const modifyContact = async (req, res) => {
 const updateStatusContact = async (req, res) => {
   const { contactId } = req.params;
 
-  const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, { new: true });
+  const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, {
+    new: true,
+  });
   if (!updatedContact) throw HttpError(404, "Not found");
 
   res.status(200).json(updatedContact);
