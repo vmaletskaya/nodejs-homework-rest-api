@@ -5,6 +5,6 @@ export default function ctrlWrapper(ctrl) {
     } catch (error) {
       next(error);
     }
-    }
-    return func;
+  };
+  return func;
 }
