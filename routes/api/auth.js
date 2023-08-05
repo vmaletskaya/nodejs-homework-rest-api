@@ -1,8 +1,10 @@
 import express from "express";
 import ctrl from "../../controllers/auth.js";
-import { authSchema, subscriptionSchema } from "../../models/user.js";
+import { authSchema, subscriptionSchema} from "../../models/user.js";
 import validateBody from "../../middleware/validateBody.js";
 import authenticate from "../../middleware/authenticate.js";
+import upload from "../../middleware/upload.js";
+import resize from "../../middleware/resize.js";
 
 const router = express.Router();
 
@@ -19,11 +21,9 @@ router.get("/current", authenticate, ctrl.getCurrent);
 router.post("/logout", authenticate, ctrl.logout);
 
 //change subscription
-router.patch(
-  "/",
-  authenticate,
-  validateBody(subscriptionSchema),
-  ctrl.changeSubscription
-);
+router.patch("/", authenticate, validateBody(subscriptionSchema), ctrl.changeSubscription);
+
+// change avatar
+router.patch("/avatars", authenticate, upload.single("avatar"), resize, ctrl.updateAvatar);
 
 export default router;
